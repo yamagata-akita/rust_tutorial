@@ -14,7 +14,7 @@ fn main() {
     println!("{} = {:.4}", exp, ans);
 }
 
-fn rpn(exp: $str) -> f64 {
+fn rpn(exp: &str) -> f64 {
     // 変数stackを空のスタックに束縛する
     // stackはミュータブル(mutable, 可変)な変数で、値の変更を許す
     let mut stack = Vec::new();
