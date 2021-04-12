@@ -74,6 +74,7 @@ pub fn sort_by<T, F>(x: &mut [T], comparator: &F) -> Result<(), String>
 mod tests {
     use super::{sort, sort_by};
     use crate::SortOrder::*;
+    use crate::utils::{new_u32_vec, is_sorted_ascending, is_sorted_descending};
 
     // 構造体Studentを定義する
     // deriveアトリビュートを使い、DebugトレイととPartialEqトレイとの実装を自動導出する
@@ -153,5 +154,23 @@ mod tests {
 
         // 結果の検証
         assert_eq!(x, expected);
+    }
+
+    #[test]
+    fn sort_u32_large() {
+        {
+            // 乱数で65536要素のデータ列を作る
+            let mut x = new_u32_vec(65536);
+            // 昇順にソートする
+            assert_eq!(sort(&mut x, &Ascending), Ok(()));
+            // ソート結果が正しいことを検証する
+            assert!(is_sorted_ascending(&x));
+        }
+        {
+            let mut x = new_u32_vec(65536);
+            assert_eq!(sort(&mut x, &Descending), Ok(()));
+            assert!(is_sorted_descending(&x));
+            
+        }
     }
 }
