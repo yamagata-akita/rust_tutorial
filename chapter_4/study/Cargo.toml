@@ -15,3 +15,11 @@ path = "src/main.rs"
 [[bin]]
 name = "fn_pointer_vs_closure"
 path = "src/fn_pointer_vs_closure.rs"
+
+[[bin]]
+name = "tuple"
+path = "src/tuple.rs"
+
+[[bin]]
+name = "array"
+path = "src/array.rs"
