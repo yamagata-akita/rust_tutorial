@@ -104,5 +104,64 @@ fn main() {
     print_info("&v1[..]", &v1[..]);     // &[char]型。全要素のスライス
     print_info("&v1", &v1);             // 同上
     print_info("&v1[1..3]", &v1[1..3]); // &[char]型。f,gを要素とする長さ2のスライス
+
+    // ミュータブルなスライス
+    let mut a1 = [5, 4, 3, 2];  // 配列 [i32, 4]型
+    let s1 = &mut a1[1..3];     // 可変のスライス。&mut[i32]型
+    s1[0] = 6;
+    s1[1] *= 10;
+    s1.swap(0, 1);
+    assert_eq!(s1, [30, 6]);
+
+    // 参照元の配列の内容を確認
+    assert_eq!(a1, [5, 30, 6, 2]);  // スライスを通じて配列の内容が変更された
+
+    // スライスの操作
+    let a2: [i32; 0] = [];
+    let s2 = &a2;            // 不変のスライスを作成
+    assert!(s2.is_empty());
+    assert_eq!(s2.len(), 0);
+    assert_eq!(s2.first(), None);
+
+    let a3 = ["zero", "one", "two", "three", "four"];
+    let s3 = &a3[1..4];
+    assert!(!s3.is_empty());
+    assert_eq!(s3.len(), 3);
+    assert_eq!(s3.first(), Some(&"one"));
+
+    assert_eq!(s3[1], "two");
+    // assert_eq!(s3[3], "?");          // 4番目の要素は存在しない。panicする
+    assert_eq!(s3.get(1), Some(&"two"));
+    assert_eq!(s3.get(3), None);        // 4番目の要素は存在しない。None
+
+    assert!(s3.contains(&"two"));       // "two"を要素に持つ
+    assert!(s3.starts_with(&["one", "two"])); // "one", "two"ではじまる
+    assert!(s3.ends_with(&["two", "three"])); // "two", "three"で終わる
+
+    
+    let mut a4 = [6, 4, 2, 8, 0, 9, 4, 3, 7, 5, 1, 7];
+
+    // 一部の要素を昇順にソートする
+    &mut a4[2..6].sort();
+    assert_eq!(&a4[2..6], &[0, 2, 8, 9]);
+
+    // スライスを2つの可変スライスへ分割する
+    let (s4a, s4b) = &mut a4.split_at_mut(5);
+
+    // 前半を逆順にする
+    s4a.reverse();
+    assert_eq!(s4a, &[8, 2, 0, 4, 6]);
+
+    // 後半を昇順にソートする
+    s4b.sort_unstable();
+    assert_eq!(s4b, &[1, 3, 4, 5, 7, 7, 9]);
+
+    // sort()とsort_unstable()のちがい
+    // sort()は安定ソートなので同順なデータのソート前の順序がソート後も保存される
+    // sort_unstable()は安定ソートではないが、一般的にsort()より高速
+
+    // &mutを省略しても同じ。型強制によって自動的にスライスが作られる
+    a4[2..6].sort();
+    // let (s4a, s4b) = a4.split_at_mut(5);
     
 }

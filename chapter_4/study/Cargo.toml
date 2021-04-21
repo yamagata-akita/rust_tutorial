@@ -23,3 +23,7 @@ path = "src/tuple.rs"
 [[bin]]
 name = "array"
 path = "src/array.rs"
+
+[[bin]]
+name = "str"
+path = "src/str.rs"
