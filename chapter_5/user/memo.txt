@@ -21,3 +21,18 @@ v.remove()
 
 v.append()
 v.extend_from_slice()
+
+
+コレクション型
+ベクタのような値の集合を格納する型の総称
+・マップ: HasMap, BTreeMap
+・セット: HashSet, BTreeSet
+・キュー: VecDeque, BinaryHeap 
+・リスト: LinkedList
+
+HashMapやHashSetはキーをもとに生成されたハッシュ値によってデータの格納先が決定される。
+暗号強度があり安全だが、ハッシュ化計算には時間がかかる。
+暗号強度が必要ない場合は、FNVのようなハッシュアルゴリズムの仕様を検討すると良い。
+
+リザルト型
+Rustでは例外を投げるのではなく、リザルトのような値を返すことでエラーが起こったことを示す

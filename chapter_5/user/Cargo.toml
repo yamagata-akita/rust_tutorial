@@ -15,3 +15,23 @@ path = "src/box.rs"
 [[bin]]
 name = "vec"
 path = "src/vec.rs"
+
+[[bin]]
+name = "boxed_slice"
+path = "src/boxed_slice.rs"
+
+[[bin]]
+name = "hash_map"
+path = "src/hash_map.rs"
+
+[[bin]]
+name = "string"
+path = "src/string.rs"
+
+[[bin]]
+name = "range"
+path = "src/range.rs"
+
+[[bin]]
+name = "result"
+path = "src/result.rs"
