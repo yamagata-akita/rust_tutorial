@@ -51,3 +51,7 @@ path = "src/struct_tuple.rs"
 [[bin]]
 name = "struct_unit"
 path = "src/struct_unit.rs"
+
+[[bin]]
+name = "enum"
+path = "src/enum.rs"
