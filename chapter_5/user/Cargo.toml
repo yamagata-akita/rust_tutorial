@@ -35,3 +35,19 @@ path = "src/range.rs"
 [[bin]]
 name = "result"
 path = "src/result.rs"
+
+[[bin]]
+name = "type_alias"
+path = "src/type_alias.rs"
+
+[[bin]]
+name = "struct"
+path = "src/struct.rs"
+
+[[bin]]
+name = "struct_tuple"
+path = "src/struct_tuple.rs"
+
+[[bin]]
+name = "struct_unit"
+path = "src/struct_unit.rs"
