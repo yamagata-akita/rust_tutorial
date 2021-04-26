@@ -55,3 +55,15 @@ path = "src/struct_unit.rs"
 [[bin]]
 name = "enum"
 path = "src/enum.rs"
+
+[[bin]]
+name = "adv_types1"
+path = "src/adv_types1.rs"
+
+[[bin]]
+name = "adv_types2"
+path = "src/adv_types2.rs"
+
+[[bin]]
+name = "type_cast1"
+path = "src/type_cast1.rs"
