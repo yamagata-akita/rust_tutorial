@@ -90,5 +90,24 @@ fn main() {
     // 型強制がないとこう書く必要がある
     // (&mut s1).push_str(s2.as_str());
 
+    
+
+    // ポインタの弱体化
+    // ・可変性の除去 &mut T型から&T型へ, *mut T型から*const T型へ
+    // ・生ポインタへの変換 &mut T型から*mut T型へ, &T空から*const T型へ
+    fn func1(slice: &[usize]) -> usize {
+        slice.len()
+    }
+
+    fn func2(slice: &mut [usize]) {
+        // ポインタの弱体化により、&mut [usize]型から&[usize]型へ型強制される
+        let len = func1(slice);
+        slice[0] = len;
+    }
+
+    let mut v = vec![0; 10];
+    func2(&mut v[..]);
+    assert_eq!(10, v[0]);
+
 
 }
