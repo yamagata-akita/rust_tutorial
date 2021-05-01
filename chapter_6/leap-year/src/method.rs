@@ -13,9 +13,22 @@ impl Circle {
     fn diameter(&self) -> u32 {
         self.radius * 2
     }
+
+    // 関連関数
+    // 構造体などデータ型そのものに関数を関連付けることができる
+
+    //small_circle関連関数
+    fn small_circle() -> Circle {
+        Circle { radius: 1 }
+    }
 }
 
 fn main() {
     let circle1 = Circle { radius: 10 };
     println!("Circle1's diameter: {}", circle1.diameter());
+
+    // Circleの関連関数small_circleの呼び出し
+    // 関連関数の実行には::を用いる
+    let circle2 = Circle::small_circle();
+    println!("Circle2's diameter: {}", circle2.diameter());
 }
