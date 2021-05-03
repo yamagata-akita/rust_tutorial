@@ -1,0 +1,25 @@
+[package]
+name = "ownership"
+version = "0.1.0"
+authors = ["yamagata-akita <tiyduts@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+[[bin]]
+name = "7_1_value_scope"
+path = "src/7_1_value_scope.rs"
+
+[[bin]]
+name = "7_2_move_semantics"
+path = "src/7_2_move_semantics.rs"
+
+[[bin]]
+name = "7_2_copy_semantics"
+path = "src/7_2_copy_semantics.rs"
+
+[[bin]]
+name = "7_3_nll"
+path = "src/7_3_nll.rs"
