@@ -15,3 +15,7 @@ path = "src/method.rs"
 [[bin]]
 name = "memo"
 path = "src/memo.rs"
+
+[[bin]]
+name = "module"
+path = "src/module.rs"

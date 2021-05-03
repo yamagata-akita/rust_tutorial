@@ -121,4 +121,156 @@ fn main() {
     };
 
     println!("{}", message);
+
+
+    // if let式
+    // 一部のmatch式に対する糖衣構文。
+    // if let式ではパターンを1つだけ書くことができる
+    // if let パターン = 変数 {
+    //     パターンマッチが成功したときに実行される節(true節)
+    // } else {
+    //     パターンマッチが失敗したときに実行される節(false節)
+    // }
+
+    let score = Some(100);
+    if let Some(100) = score {
+        println!("You got full marks");
+    } else {
+        println!("You didn't get full marks");
+    }
+
+
+    // 繰り返し
+
+    // loop式
+    // loop {
+    //     ループ本体
+    // }
+
+    let mut counter = 10;
+    loop {
+        println!("{}", counter);
+
+        if counter == 0 {
+            break;
+        }
+
+        counter -= 1;
+    }
+
+    // loop式は式なので、値を返す
+    let mut counter = 0;
+
+    let ten = loop {
+        if counter == 10 {
+            // break 値; で値を返す
+            break counter;
+        }
+        counter += 1;
+    };
+
+    println!("{}", ten);
+
+
+    // while式
+    // while 条件式 {
+    //     ループ本体
+    // }
+
+    let mut counter = 0;
+
+    while counter != 10 {
+        println!("{}", counter);
+        counter += 1;
+    }
+
+    // while let式
+    // while let パターン = 変数 {
+    //     ループ本体
+    // }
+
+    let mut counter = Some(0);
+
+    while let Some(i) = counter {
+        if i == 10 {
+            counter = None;
+        } else {
+            println!("{}", i);
+            counter = Some(i + 1);
+        }
+    }
+
+
+    // for式
+    // ベクタなどのコレクションに対して繰り返しを適用できる
+    // 指定されたイテレータから要素を受け取り、ループ本体を実行する
+
+    // for 要素の名前 in イテレータ {
+    //     ループ本体
+    // }
+
+    let vector = vec!["Cyan", "Magenta", "Yellow", "Black"];
+
+    for v in vector.iter() {
+        println!("{}", v);
+    }
+
+
+    // クロージャ
+    // 関数を定義したとき、関数の定義の外にある変数を補足する関数のこと
+
+    // | 引数リスト | {
+    //     クロージャ本体
+    // }
+
+    let one = 1;
+    let plus_one = |x| {
+        x + one
+    };
+
+    println!("10 + 1 = {}", plus_one(10));
+    // クロージャは通常の関数とことなり、引数リストでは推論可能な限り、型を明示する必要はない
+
+
+    // エラーあり
+    // let mut err_one = 1;
+    // let plus_one_err = |x| {
+    //     x + err_one
+    // };
+
+    // err_one += 1;
+    // println!("10 + 1 = {}", plus_one_err(10));
+
+    // ↑クロージャを作成するときにerr_one変数をクロージャに貸してしまっているためエラー
+    // クロージャにone変数を貸すのではなく、コピーすればエラーを解消できる
+    // 変数の値をコピーするにはmoveキーワードを用いる
+    
+    let mut correct_one = 1;
+    // move
+    let correct_plus_one = move |x| {
+        x + correct_one
+    };
+
+    correct_one += 1;
+    println!("10 + 1 = {}", correct_plus_one(10));
+
+
+    // アトリビュート
+    // アイテム宣言にメタデータをつけるためのもの
+
+    // 対象となるアイテム宣言の前に書く方法
+    #[test]
+    fn test1() {
+        // 省略
+    }
+
+    fn test2() {
+        // 対象となるアイテム宣言の中に書く方法
+        // #![test]
+        // 省略
+    }
+
+    // testアトリビュートは、関数につけることのできるアトリビュート
+    // Rustコンパイラに--testオプションを渡したときだけコンパイルされるようになる
+
 }
